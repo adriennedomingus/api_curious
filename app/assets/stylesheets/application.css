@@ -13,3 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
+.welcome-message {
+  margin-top: 15px; 
+}
