@@ -10,7 +10,12 @@ module SpecHelpers
             },
       credentials: {
         token: "lakj3lka"
-                  }
+                    },
+      extra: {
+        raw_info: {
+          avatar_url: "https://avatars.githubusercontent.com/u/10178677?v=3"
+        }
+              }
       })
   end
 end
