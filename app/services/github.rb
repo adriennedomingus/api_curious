@@ -11,42 +11,39 @@ class Github
   end
 
   def followers
-    JSON.parse(connection.get("/users/#{current_user.nickname}/followers").body)
+    get("/users/#{current_user.nickname}/followers")
   end
 
   def following
-    JSON.parse(connection.get("/users/#{current_user.nickname}/following").body)
+    get("/users/#{current_user.nickname}/following")
   end
 
   def organizations
-    JSON.parse(connection.get("/users/#{current_user.nickname}/orgs").body)
+    get("/users/#{current_user.nickname}/orgs")
   end
 
   def repos
-    JSON.parse(connection.get("/users/#{current_user.nickname}/repos").body)
+    get("/users/#{current_user.nickname}/repos")
   end
 
   def starred
-    JSON.parse(connection.get("/users/#{current_user.nickname}/starred").body)
+    get("/users/#{current_user.nickname}/starred")
   end
 
   def current_streak
-    data = Nokogiri::HTML(open("https://github.com/#{current_user.nickname}"))
-    data.css('#contributions-calendar .contrib-column:nth-of-type(3) .contrib-number').text
+    main_page.css('#contributions-calendar .contrib-column:nth-of-type(3) .contrib-number').text
   end
 
   def longest_streak
-    data = Nokogiri::HTML(open("https://github.com/#{current_user.nickname}"))
-    data.css('#contributions-calendar .contrib-column:nth-of-type(2) .contrib-number').text
+    main_page.css('#contributions-calendar .contrib-column:nth-of-type(2) .contrib-number').text
   end
 
   def contributions_year
-    data = Nokogiri::HTML(open("https://github.com/#{current_user.nickname}"))
-    data.css('#contributions-calendar .contrib-column-first').text.split("\n")[2].strip
+    main_page.css('#contributions-calendar .contrib-column-first').text.split("\n")[2].strip
   end
 
   def recent_commits
-    all_events = JSON.parse(connection.get("users/#{current_user.nickname}/events").body)
+    all_events = get("users/#{current_user.nickname}/events")
     commits = all_events.select { |event| event["type"] == "PushEvent"}
     limited = commits.map do |commit|
       {repo: commit["repo"]["name"], message: commit["payload"]["commits"].first["message"]}
@@ -56,9 +53,9 @@ class Github
 
   def following_feed
     feed = []
-    following = JSON.parse(connection.get("/users/#{current_user.nickname}/following").body)
+    following = get("/users/#{current_user.nickname}/following")
     following.each do |followed|
-      all_events = JSON.parse(connection.get("users/#{followed["login"]}/events").body)
+      all_events = get("users/#{followed["login"]}/events")
       commits = all_events.select { |event| event["type"] == "PushEvent"}
       commits.each do |commit|
         feed << {repo: commit["repo"]["name"], message: commit["payload"]["commits"].first["message"]}
@@ -66,4 +63,14 @@ class Github
     end
     feed
   end
+
+  private
+
+    def get(path)
+      JSON.parse(connection.get(path).body)
+    end
+
+    def main_page
+      Nokogiri::HTML(open("https://github.com/#{current_user.nickname}"))
+    end
 end

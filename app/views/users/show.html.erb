@@ -8,47 +8,47 @@
       <hr/>
       <div class="row followed-following">
         <div class="col-md-4">
-          <h3> <%= Github.new(current_user).followers.count %> </h3>
+          <h3> <%= @service.followers.count %> </h3>
           <p>followers</p>
         </div>
         <div class="col-md-4">
-          <h3><%= Github.new(current_user).following.count %> </h3>
+          <h3><%= @service.following.count %> </h3>
           <p>following</p>
         </div>
         <div class="col-md-4">
-          <h3><%= Github.new(current_user).starred.count %></h3>
+          <h3><%= @service.starred.count %></h3>
           <p>starred</p>
         </div>
       </div>
       <hr/>
       <h4>Organizations</h3>
-      <% if @orgs.empty? %>
+      <% if @service.organizations.empty? %>
          <p class="greyer">You are not a member of any organizations</p>
       <% end %>
-      <% @orgs.each do |org| %>
+      <% @service.organizations.each do |org| %>
         <%= org["login"] %>
       <% end %>
     </div>
     <div class="col-md-9">
       <div class="row">
         <h4>Your Repositories</h4>
-        <% @repos.each do |repo| %>
+        <% @service.repos.each do |repo| %>
           <p><%= repo["name"] %></p>
         <% end %>
         <h4 class="contributions-header">Contributions</h4>
         <div class="col-md-4 contribution-block">
           <p>Contributions in the last year</p>
-          <h3 class = "contributions"><%= Github.new(current_user).contributions_year %></h3>
+          <h3 class = "contributions"><%= @service.contributions_year %></h3>
           <p>Date range</p>
         </div>
         <div class="col-md-4 contribution-block">
           <p>Longest streak</p>
-          <h3 class = "contributions"><%= Github.new(current_user).longest_streak %></h3>
+          <h3 class = "contributions"><%= @service.longest_streak %></h3>
           <p>Date range</p>
         </div>
         <div class="col-md-4 contribution-block">
           <p>Current Streak</p>
-          <h3 class = "contributions"> <%= Github.new(current_user).current_streak %> </h3>
+          <h3 class = "contributions"> <%= @service.current_streak %> </h3>
           <p>Date range</p>
         </div>
       </div>
@@ -58,7 +58,7 @@
           <th>Repo</th>
           <th>Message</th>
         </tr>
-        <% @commits.each do |commit| %>
+        <% @service.recent_commits.each do |commit| %>
         <tr>
           <td><%= commit[:repo] %></td>
           <td><%= commit[:message] %></td>
@@ -72,7 +72,7 @@
           <th>Repo</th>
           <th>Message</th>
         </tr>
-        <% @following_feed.each do |commit| %>
+        <% @service.following_feed.each do |commit| %>
         <tr>
           <td><%= commit[:repo] %></td>
           <td><%= commit[:message] %></td>
