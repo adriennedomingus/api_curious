@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-3">
-      <% if current_user %>
+      <% if current_user && @repos %>
       <%= image_tag current_user.image %>
       <h2> <%= current_user.name %></h2>
       <p class = "grey"> <%= current_user.nickname %></p>
@@ -25,6 +25,9 @@
     <div class="col-md-9">
       <div class="row">
         <h4>Your Repositories</h4>
+        <% @repos.each do |repo| %>
+          <p><%= repo["name"] %></p>
+        <% end %>
         <h4 class="contributions-header">Contributions</h4>
         <div class="col-md-4 contribution-block">
           <p>Contributions in the last year</p>
