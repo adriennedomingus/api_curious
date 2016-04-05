@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class Github
   attr_reader :connection, :current_user
 
@@ -25,5 +27,10 @@ class Github
 
   def starred
     JSON.parse(connection.get("/users/#{current_user.nickname}/starred").body)
+  end
+
+  def current_streak
+    data = Nokogiri::HTML(open("https://github.com/#{current_user.nickname}"))
+    data.css('#contributions-calendar .contrib-column:nth-of-type(2) .contrib-number').text
   end
 end
