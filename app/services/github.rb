@@ -7,6 +7,7 @@ class Github
     @current_user = current_user
     @connection = Faraday.new("https://api.github.com")
     @connection.headers['Authorization'] = "token #{current_user.token}"
+    # @connection.headers['Content-Type'] = "application/json"
   end
 
   def followers
@@ -37,5 +38,10 @@ class Github
   def longest_streak
     data = Nokogiri::HTML(open("https://github.com/#{current_user.nickname}"))
     data.css('#contributions-calendar .contrib-column:nth-of-type(2) .contrib-number').text
+  end
+
+  def contributions_year
+    data = Nokogiri::HTML(open("https://github.com/#{current_user.nickname}"))
+    data.css('#contributions-calendar .contrib-column-first').text.split("\n")[2].strip
   end
 end

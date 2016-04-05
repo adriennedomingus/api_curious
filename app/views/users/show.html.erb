@@ -31,7 +31,7 @@
         <h4 class="contributions-header">Contributions</h4>
         <div class="col-md-4 contribution-block">
           <p>Contributions in the last year</p>
-          <h3 class = "contributions">954 total</h3>
+          <h3 class = "contributions"><%= Github.new(current_user).contributions_year %></h3>
           <p>Date range</p>
         </div>
         <div class="col-md-4 contribution-block">
