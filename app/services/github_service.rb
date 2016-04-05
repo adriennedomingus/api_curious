@@ -1,6 +1,6 @@
 require 'open-uri'
 
-class Github
+class GithubService
   attr_reader :connection, :current_user
 
   def initialize(current_user)

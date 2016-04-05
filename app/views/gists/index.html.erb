@@ -1,0 +1,16 @@
+<div class="container">
+  <% if current_user %>
+    <table class="table">
+      <tr>
+        <th>Title</th>
+        <th>Created on</th>
+      </tr>
+      <% @gistservice.all_gists.each do |the_gist| %>
+        <tr>
+          <td><%= link_to the_gist["files"].keys.first, user_gist_path(current_user, the_gist["id"]) %></td>
+          <td><%= Date.parse(the_gist["created_at"]).strftime("%B %d, %Y") %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+</div>

@@ -8,5 +8,10 @@
         <li>  <%= link_to "Sign in with Github", "/auth/github" %> </li>
       <% end %>
     </ul>
+    <ul class="nav navbar-nav navbar-left">
+      <% if current_user %>
+        <li> <%= link_to "Gists", user_gists_path(current_user)%></li>
+      <% end %>
+    </ul>
   </div>
 </nav>
