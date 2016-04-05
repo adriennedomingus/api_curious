@@ -32,8 +32,8 @@
     <div class="col-md-9">
       <div class="row">
         <h4>Your Repositories</h4>
-        <% @service.repos.each do |repo| %>
-          <p><%= repo["name"] %></p>
+        <% @repos.each do |repo| %>
+          <p><%= repo.name %></p>
         <% end %>
         <h4 class="contributions-header">Contributions</h4>
         <div class="col-md-4 contribution-block">
