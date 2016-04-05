@@ -53,8 +53,18 @@
         </div>
       </div>
       <h4 class="commits-header">Contribution Activity</h4>
-      <!--  Commits.each do |commit| -->
-      <!-- <p> Commit </p> -->
+      <table class="table">
+        <tr>
+          <th>Repo</th>
+          <th>Message</th>
+        </tr>
+        <% @commits.each do |commit| %>
+        <tr>
+          <td><%= commit[:repo] %></td>
+          <td><%= commit[:message] %></td>
+        </tr>
+        <% end %>
+      </table>
       <hr>
       <h4 class="following-header">Activity from Users You Follow</h4>
       <!--  Stuff with follower activity -->
