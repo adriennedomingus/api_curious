@@ -5,8 +5,12 @@ module SpecHelpers
       provider: 'github',
       uid: "12345",
       info: {
-        name: "Adrienne"
-            }
+        name: "Adrienne",
+        nickname: "adriennedomingus"
+            },
+      credentials: {
+        token: "lakj3lka"
+                  }
       })
   end
 end
