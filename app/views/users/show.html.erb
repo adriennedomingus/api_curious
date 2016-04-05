@@ -22,11 +22,11 @@
       </div>
       <hr/>
       <h4>Organizations</h3>
-      <% if @service.organizations.empty? %>
+      <% if @orgs.empty? %>
          <p class="greyer">You are not a member of any organizations</p>
       <% end %>
-      <% @service.organizations.each do |org| %>
-        <%= org["login"] %>
+      <% @orgs.each do |org| %>
+        <%= org.login %>
       <% end %>
     </div>
     <div class="col-md-9">
