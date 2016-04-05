@@ -1,6 +1,9 @@
 <div class="container">
   <div class="row">
     <% if session[:auth] %>
+    <% if session[:auth]["extra"]%>
+    <%= require "pry"
+    binding.pry %>
     <div class="col-md-3">
       <%= image_tag session[:auth]["extra"]["raw_info"]["avatar_url"] %>
       <h2> <%= session[:auth]["info"]["name"] %></h2>
@@ -49,6 +52,7 @@
       <h4 class="following-header">Activity from Users You Follow</h4>
       <!--  Stuff with follower activity -->
     </div>
+    <% end %>
     <% end %>
   </div>
 </div>
