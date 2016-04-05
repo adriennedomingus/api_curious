@@ -14,10 +14,6 @@
  *= require_self
  */
 
-.welcome-message {
-  margin-top: 15px;
-}
-
 img {
   width: 100%;
   border-radius: 10px;

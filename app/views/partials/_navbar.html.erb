@@ -2,7 +2,7 @@
   <div class="container">
     <ul class="nav navbar-nav navbar-right">
       <% if current_user %>
-        <li class="welcome-message"><%= "Welcome #{current_user.name}" %> </li>
+        <li class="welcome-message"><%= link_to "Welcome #{current_user.name}", root_path%> </li>
         <li><%= link_to "Logout", logout_path %></li>
       <% else %>
         <li>  <%= link_to "Sign in with Github", "/auth/github" %> </li>
