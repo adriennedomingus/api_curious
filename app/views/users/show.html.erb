@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-3">
-      <% if current_user && @repos %>
+      <% if current_user %>
       <%= image_tag current_user.image %>
       <h2> <%= current_user.name %></h2>
       <p class = "grey"> <%= current_user.nickname %></p>
@@ -21,6 +21,13 @@
         </div>
       </div>
       <hr/>
+      <h4>Organizations</h3>
+      <% if @orgs.empty? %>
+         <p class="greyer">You are not a member of any organizations</p>
+      <% end %>
+      <% @orgs.each do |org| %>
+        <%= org["login"] %>
+      <% end %>
     </div>
     <div class="col-md-9">
       <div class="row">
