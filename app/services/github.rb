@@ -31,6 +31,11 @@ class Github
 
   def current_streak
     data = Nokogiri::HTML(open("https://github.com/#{current_user.nickname}"))
+    data.css('#contributions-calendar .contrib-column:nth-of-type(3) .contrib-number').text
+  end
+
+  def longest_streak
+    data = Nokogiri::HTML(open("https://github.com/#{current_user.nickname}"))
     data.css('#contributions-calendar .contrib-column:nth-of-type(2) .contrib-number').text
   end
 end
