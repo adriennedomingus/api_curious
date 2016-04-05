@@ -15,5 +15,42 @@
  */
 
 .welcome-message {
-  margin-top: 15px; 
+  margin-top: 15px;
+}
+
+img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.grey {
+  color: grey;
+  font-size: 1.75em;
+  font-weight: 300;
+}
+
+.followed-following {
+  margin-top: -25px;
+  margin-bottom: -15px;
+}
+
+.contributions {
+  margin-top: 0px;
+}
+
+.contribution-block {
+  border: 1px solid #cecccc;
+  text-align: center;
+}
+
+.contributions-header {
+  font-size: 1.25em;
+  margin-bottom: 0px;
+  border: 1px solid #cecccc;
+  background-color: #e0dede;
+  padding: 6px;
+}
+
+.commits-header {
+  margin-top: 30px;
 }

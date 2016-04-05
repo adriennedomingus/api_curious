@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row">
+    <% if session[:auth] %>
+    <div class="col-md-3">
+      <%= image_tag session[:auth]["extra"]["raw_info"]["avatar_url"] %>
+      <h2> <%= session[:auth]["info"]["name"] %></h2>
+      <p class = "grey"> <%= session[:auth]["info"]["nickname"] %></p>
+      <hr/>
+      <div class="row followed-following">
+        <div class="col-md-4">
+          <h3>15 </h3>
+          <p>followers</p>
+        </div>
+        <div class="col-md-4">
+          <h3>0 </h3>
+          <p>following</p>
+        </div>
+        <div class="col-md-4">
+          <h3>3 </h3>
+          <p>starred</p>
+        </div>
+      </div>
+      <hr/>
+    </div>
+    <div class="col-md-9">
+      <div class="row">
+        <h4>Your Repositories</h4>
+        <h4 class="contributions-header">Contributions</h4>
+        <div class="col-md-4 contribution-block">
+          <p>Contributions in the last year</p>
+          <h3 class = "contributions">954 total</h3>
+          <p>Date range</p>
+        </div>
+        <div class="col-md-4 contribution-block">
+          <p>Longest streak</p>
+          <h3 class = "contributions">65 days</h3>
+          <p>Date range</p>
+        </div>
+        <div class="col-md-4 contribution-block">
+          <p>Current Streak</p>
+          <h3 class = "contributions">65 days</h3>
+          <p>Date range</p>
+        </div>
+      </div>
+      <h4 class="commits-header">Contribution Activity</h4>
+      <!--  Commits.each do |commit| -->
+      <!-- <p> Commit </p> -->
+      <hr>
+      <h4 class="following-header">Activity from Users You Follow</h4>
+      <!--  Stuff with follower activity -->
+    </div>
+    <% end %>
+  </div>
+</div>
