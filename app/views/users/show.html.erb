@@ -67,7 +67,18 @@
       </table>
       <hr>
       <h4 class="following-header">Activity from Users You Follow</h4>
-      <!--  Stuff with follower activity -->
+      <table class="table">
+        <tr>
+          <th>Repo</th>
+          <th>Message</th>
+        </tr>
+        <% @following_feed.each do |commit| %>
+        <tr>
+          <td><%= commit[:repo] %></td>
+          <td><%= commit[:message] %></td>
+        </tr>
+        <% end %>
+      </table>
       <% end %>
     </div>
   </div>

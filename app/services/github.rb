@@ -53,4 +53,17 @@ class Github
     end
     limited
   end
+
+  def following_feed
+    feed = []
+    following = JSON.parse(connection.get("/users/#{current_user.nickname}/following").body)
+    following.each do |followed|
+      all_events = JSON.parse(connection.get("users/#{followed["login"]}/events").body)
+      commits = all_events.select { |event| event["type"] == "PushEvent"}
+      commits.each do |commit|
+        feed << {repo: commit["repo"]["name"], message: commit["payload"]["commits"].first["message"]}
+      end
+    end
+    feed
+  end
 end
