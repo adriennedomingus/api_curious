@@ -3,8 +3,8 @@
     <div class="col-md-3">
       <% if current_user %>
       <%= image_tag current_user.image %>
-      <h2> <%= session[:auth]["info"]["name"] %></h2>
-      <p class = "grey"> <%= session[:auth]["info"]["nickname"] %></p>
+      <h2> <%= current_user.name %></h2>
+      <p class = "grey"> <%= current_user.nickname %></p>
       <hr/>
       <div class="row followed-following">
         <div class="col-md-4">
