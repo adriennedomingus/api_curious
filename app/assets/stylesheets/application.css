@@ -29,6 +29,11 @@ img {
   font-weight: 300;
 }
 
+.greyer {
+  color: grey;
+  font-weight: 300;
+}
+
 .followed-following {
   margin-top: -25px;
   margin-bottom: -15px;
