@@ -44,4 +44,13 @@ class Github
     data = Nokogiri::HTML(open("https://github.com/#{current_user.nickname}"))
     data.css('#contributions-calendar .contrib-column-first').text.split("\n")[2].strip
   end
+
+  def recent_commits
+    all_events = JSON.parse(connection.get("users/#{current_user.nickname}/events").body)
+    commits = all_events.select { |event| event["type"] == "PushEvent"}
+    limited = commits.map do |commit|
+      {repo: commit["repo"]["name"], message: commit["payload"]["commits"].first["message"]}
+    end
+    limited
+  end
 end
