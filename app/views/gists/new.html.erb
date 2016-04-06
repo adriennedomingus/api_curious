@@ -10,8 +10,12 @@
           <%= text_field_tag :description, nil, class:"form-control text-input", required:true %>
         </div>
         <div class="field">
-          <%= label_tag :file %><br>
-          <%= file_field_tag :file, class:"form-control", required:true %>
+          <%= label_tag :title %><br>
+          <%= text_field_tag :title, nil, class:"form-control text-input", required:true %>
+        </div>
+        <div class="field">
+          <%= label_tag :contents %><br>
+          <%= text_area_tag :contents, nil, class:"form-control text-input", required:true %>
         </div>
         <br>
       <%= submit_tag "Create New Public Gist", class: "btn btn-primary"%>

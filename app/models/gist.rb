@@ -9,8 +9,8 @@ class Gist < OpenStruct
     hash = { description: params[:description],
              public: true,
              files: {
-               params[:file] => {
-                 content: File.read("./app/#{params[:file]}")
+               params[:title] => {
+                 content: params[:contents]
                }
              }}
     GistService.new(current_user).create(hash)
