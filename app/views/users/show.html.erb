@@ -22,18 +22,18 @@
       </div>
       <hr/>
       <h4>Organizations</h3>
-      <% if @service.organizations.empty? %>
+      <% if @orgs.empty? %>
          <p class="greyer">You are not a member of any organizations</p>
       <% end %>
-      <% @service.organizations.each do |org| %>
-        <%= org["login"] %>
+      <% @orgs.each do |org| %>
+        <%= org.login %>
       <% end %>
     </div>
     <div class="col-md-9">
       <div class="row">
         <h4>Your Repositories</h4>
-        <% @service.repos.each do |repo| %>
-          <p><%= repo["name"] %></p>
+        <% @repos.each do |repo| %>
+          <p><%= repo.name %></p>
         <% end %>
         <h4 class="contributions-header">Contributions</h4>
         <div class="col-md-4 contribution-block">
@@ -53,32 +53,10 @@
         </div>
       </div>
       <h4 class="commits-header">Contribution Activity</h4>
-      <table class="table">
-        <tr>
-          <th>Repo</th>
-          <th>Message</th>
-        </tr>
-        <% @service.recent_commits.each do |commit| %>
-        <tr>
-          <td><%= commit[:repo] %></td>
-          <td><%= commit[:message] %></td>
-        </tr>
-        <% end %>
-      </table>
+        <%= render partial: "partials/commit_table", locals: {commits: @commits } %>
       <hr>
       <h4 class="following-header">Activity from Users You Follow</h4>
-      <table class="table">
-        <tr>
-          <th>Repo</th>
-          <th>Message</th>
-        </tr>
-        <% @service.following_feed.each do |commit| %>
-        <tr>
-          <td><%= commit[:repo] %></td>
-          <td><%= commit[:message] %></td>
-        </tr>
-        <% end %>
-      </table>
+        <%= render partial: "partials/commit_table", locals: {commits: @following_commits } %>
       <% end %>
     </div>
   </div>

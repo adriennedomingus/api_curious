@@ -44,9 +44,9 @@ class GithubService
 
   def recent_commits
     all_events = get("users/#{current_user.nickname}/events")
-    commits = all_events.select { |event| event["type"] == "PushEvent"}
+    commits = push_events(all_events)
     limited = commits.map do |commit|
-      {repo: commit["repo"]["name"], message: commit["payload"]["commits"].first["message"]}
+      scope_commits(commit)
     end
     limited
   end
@@ -56,15 +56,23 @@ class GithubService
     following = get("/users/#{current_user.nickname}/following")
     following.each do |followed|
       all_events = get("users/#{followed["login"]}/events")
-      commits = all_events.select { |event| event["type"] == "PushEvent"}
-      commits.each do |commit|
-        feed << {repo: commit["repo"]["name"], message: commit["payload"]["commits"].first["message"]}
+      commits = push_events(all_events)
+      commits.map do |commit|
+        feed << scope_commits(commit)
       end
     end
     feed
   end
 
   private
+
+    def push_events(all_events)
+      all_events.select { |event| event["type"] == "PushEvent"}
+    end
+
+    def scope_commits(commit)
+      {repo: commit["repo"]["name"], message: commit["payload"]["commits"].first["message"]}
+    end
 
     def get(path)
       JSON.parse(connection.get(path).body)
