@@ -1,4 +1,5 @@
 <div class="container">
   <h3><%= @name %></h3>
   <p><%= @gist["files"][@name]["content"] %></p>
+  <%= link_to "Delete this Gist", user_gist_path(current_user, @gist.id), method: :delete %>
 </div>

@@ -14,4 +14,10 @@ class GistsController < ApplicationController
     Gist.create_struct(current_user, params)
     redirect_to user_gists_path(current_user)
   end
+
+  def destroy
+    the_gist = Gist.find(current_user, params[:id])
+    the_gist.delete(current_user)
+    redirect_to user_gists_path(current_user)
+  end
 end

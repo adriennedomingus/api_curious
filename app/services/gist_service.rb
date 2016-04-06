@@ -21,6 +21,10 @@ class GistService
     connection.post("/gists", hash)
   end
 
+  def destroy_gist(the_gist)
+    connection.delete("/gists/#{the_gist.id}")
+  end
+
   private
 
     def get(path)
