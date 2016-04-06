@@ -14,4 +14,3 @@
 
 # Ignore application configuration
 /config/application.yml
-/spec/spec_helper.rb
