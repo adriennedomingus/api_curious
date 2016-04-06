@@ -9,4 +9,9 @@ class GistsController < ApplicationController
     @gist = Gist.find(current_user, params[:id])
     @name = @gist["files"].keys.first
   end
+
+  def create
+    Gist.create_struct(current_user, params)
+    redirect_to user_gists_path(current_user)
+  end
 end

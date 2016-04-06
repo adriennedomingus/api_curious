@@ -5,7 +5,7 @@ class GistService
     @current_user = current_user
     @connection = Faraday.new("https://api.github.com")
     @connection.headers['Authorization'] = "token #{current_user.token}"
-    # @connection.headers['Content-Type'] = "application/json"
+    @connection.headers['Content-Type'] = "application/json"
   end
 
   def all_gists
@@ -16,6 +16,10 @@ class GistService
     get("/gists/#{id}")
   end
 
+  def create(hash)
+    hash = hash.to_json
+    connection.post("/gists", hash)
+  end
 
   private
 
