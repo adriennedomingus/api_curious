@@ -1,12 +1,12 @@
 require 'open-uri'
 
 class GithubService
-  attr_reader :connection, :current_user
+  attr_reader :current_user
 
   def initialize(current_user)
     @current_user = current_user
-    @connection = Faraday.new("https://api.github.com")
-    @connection.headers['Authorization'] = "token #{current_user.token}"
+    @_connection = Faraday.new("https://api.github.com")
+    connection.headers['Authorization'] = "token #{current_user.token}"
   end
 
   def followers
@@ -64,6 +64,10 @@ class GithubService
   end
 
   private
+
+    def connection
+      @_connection
+    end
 
     def push_events(all_events)
       all_events.select { |event| event["type"] == "PushEvent"}
