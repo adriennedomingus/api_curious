@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Repository do
   context ".all" do
-    it "returns a collection of legislators" do
+    it "returns a collection of repositories" do
       VCR.use_cassette "repository.all" do
         current_user = User.create(provider: 'github', uid: '1', name: "Adrienne", token: ENV['USER_TOKEN'], nickname: 'adriennedomingus')
         repositories = Repository.all(current_user)
