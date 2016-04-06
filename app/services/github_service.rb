@@ -7,7 +7,6 @@ class GithubService
     @current_user = current_user
     @connection = Faraday.new("https://api.github.com")
     @connection.headers['Authorization'] = "token #{current_user.token}"
-    # @connection.headers['Content-Type'] = "application/json"
   end
 
   def followers
