@@ -11,7 +11,6 @@ var renderRepos = function() {
          items.push( "<p>" + repository.table.name + "</p>" );
       })
       $('#all_repos').html(items.join(""))
- }
+    }
   });
-
 }
