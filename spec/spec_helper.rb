@@ -9,7 +9,7 @@ module SpecHelpers
         nickname: "adriennedomingus"
             },
       credentials: {
-        token: "8e5c7ac403666edd7e02d72a173b9e1d12e3cfff"
+        token: "c9adbcc92d4e86a3093b0d018ad559fdb891d200"
                     },
       extra: {
         raw_info: {
