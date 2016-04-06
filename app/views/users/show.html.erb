@@ -53,32 +53,10 @@
         </div>
       </div>
       <h4 class="commits-header">Contribution Activity</h4>
-      <table class="table">
-        <tr>
-          <th>Repo</th>
-          <th>Message</th>
-        </tr>
-        <% @service.recent_commits.each do |commit| %>
-        <tr>
-          <td><%= commit[:repo] %></td>
-          <td><%= commit[:message] %></td>
-        </tr>
-        <% end %>
-      </table>
+        <%= render partial: "partials/commit_table", locals: {commits: @commits } %>
       <hr>
       <h4 class="following-header">Activity from Users You Follow</h4>
-      <table class="table">
-        <tr>
-          <th>Repo</th>
-          <th>Message</th>
-        </tr>
-        <% @service.following_feed.each do |commit| %>
-        <tr>
-          <td><%= commit[:repo] %></td>
-          <td><%= commit[:message] %></td>
-        </tr>
-        <% end %>
-      </table>
+        <%= render partial: "partials/commit_table", locals: {commits: @following_commits } %>
       <% end %>
     </div>
   </div>
