@@ -63,6 +63,10 @@ class GithubService
     feed
   end
 
+  def main_page
+    @main_page ||= Nokogiri::HTML(open("https://github.com/#{current_user.nickname}"))
+  end
+
   private
 
     def connection
@@ -79,9 +83,5 @@ class GithubService
 
     def get(path)
       JSON.parse(connection.get(path).body)
-    end
-
-    def main_page
-      Nokogiri::HTML(open("https://github.com/#{current_user.nickname}"))
     end
 end

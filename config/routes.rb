@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show, :create] do
     resources :gists, only: [:index, :show, :new, :create, :destroy]
   end
+  resources :repositories, only: [:index]
 end

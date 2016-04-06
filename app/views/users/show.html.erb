@@ -32,9 +32,8 @@
     <div class="col-md-9">
       <div class="row">
         <h4>Your Repositories</h4>
-        <% @repos.each do |repo| %>
-          <p><%= repo.name %></p>
-        <% end %>
+        <div id="all_repos">
+        </div>
         <h4 class="contributions-header">Contributions</h4>
         <div class="col-md-4 contribution-block">
           <p>Contributions in the last year</p>
