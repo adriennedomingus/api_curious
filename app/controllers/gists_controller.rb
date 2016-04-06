@@ -1,8 +1,6 @@
 class GistsController < ApplicationController
   def index
-    if current_user
-      @gistservice = GistService.new(current_user)
-    end
+    @gists = Gist.all(current_user)
   end
 
   def show
