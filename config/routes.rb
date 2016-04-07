@@ -6,4 +6,5 @@ Rails.application.routes.draw do
     resources :gists, only: [:index, :show, :new, :create, :destroy]
   end
   resources :repositories, only: [:index]
+  resources :commits, only: [:index]
 end
