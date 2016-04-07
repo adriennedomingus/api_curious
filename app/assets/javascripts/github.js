@@ -1,5 +1,6 @@
 $(document).ready(function(){
   renderRepos();
+
 });
 
 var renderRepos = function() {
@@ -10,7 +11,8 @@ var renderRepos = function() {
       $.each(data, function(key, repository) {
          items.push( "<p>" + repository.table.name + "</p>" );
       })
-      $('#all_repos').html(items.join(""))
+      $('#all_repos').html(items.join(""));
+      $('.spinning-wheel').addClass('hidden');
     }
   });
 }

@@ -55,3 +55,12 @@ img {
 .commits-header {
   margin-top: 30px;
 }
+
+.spinning-wheel {
+  height: 65px;
+  width: 65px;
+}
+
+.hidden {
+  display: none;
+}
