@@ -64,8 +64,16 @@
       </table>
       <hr>
       <h4 class="following-header">Activity from Users You Follow</h4>
-        <%= render partial: "partials/commit_table", locals: {commits: @following_commits } %>
-      <% end %>
+      <%= image_tag "http://img1.targetimg1.com/tff/bm-2-tff_20160105.1/images/spinner-small.gif", class: 'spinning-wheel' %>
+      <table class="table">
+        <tr>
+          <th>Repo</th>
+          <th>Message</th>
+        </tr>
+      </table>
+      <table class="table"id="following_commits">
+      </table>
+    <% end %>
     </div>
   </div>
 </div>

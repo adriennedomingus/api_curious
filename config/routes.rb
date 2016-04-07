@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   end
   resources :repositories, only: [:index]
   resources :commits, only: [:index]
+  get '/following/commits', to: 'commits#following'
 end
