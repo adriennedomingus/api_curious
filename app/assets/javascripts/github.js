@@ -12,8 +12,7 @@ var renderRepos = function() {
       $.each(data, function(key, repository) {
          items.push( "<p>" + repository.table.name + "</p>" );
       })
-      $('#all_repos').html(items.join(""));
-      $('.spinning-wheel').addClass('hidden');
+      showHide('#all_repos', '#repo-wheel', items);
     }
   });
 }
@@ -22,15 +21,8 @@ var renderMyCommits = function() {
   $.ajax({
     url: '/commits',
     success: function(data) {
-      var items = [];
-      $.each(data, function(key, commit) {
-         items.push("<tr>")
-         items.push( "<td>" + commit.table.repo + "</td>" );
-         items.push( "<td>" + commit.table.message + "</td>" );
-         items.push("</tr>")
-      })
-      $('#my_commits').html(items.join(""));
-      $('.spinning-wheel').addClass('hidden');
+      var items = eachCommit(data);
+      showHide('#my_commits', '#commits-wheel', items);
     }
   });
 }
@@ -39,15 +31,22 @@ var renderFollowingCommits = function() {
   $.ajax({
     url: '/following/commits',
     success: function(data) {
-      var items = [];
-      $.each(data, function(key, commit) {
-         items.push("<tr>")
-         items.push( "<td>" + commit.table.repo + "</td>" );
-         items.push( "<td>" + commit.table.message + "</td>" );
-         items.push("</tr>")
-      })
-      $('#following_commits').html(items.join(""));
-      $('.spinning-wheel').addClass('hidden');
+      var items = eachCommit(data);
+      showHide('#following_commits', '#following-wheel', items);
     }
   });
+}
+
+var showHide = function(divId, wheelId, items) {
+  $(divId).html(items.join(""));
+  $(wheelId).addClass('hidden');
+}
+
+var eachCommit = function(data) {
+  var items = [];
+  $.each(data, function(key, commit) {
+    items.push( "<tr> <td>" + commit.table.repo + "</td>" );
+    items.push( "<td>" + commit.table.message + "</td> </tr>" );
+  })
+  return items;
 }

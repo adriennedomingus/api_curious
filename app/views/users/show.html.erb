@@ -32,7 +32,7 @@
     <div class="col-md-9">
       <div class="row">
         <h4>Your Repositories</h4>
-        <%= image_tag "http://img1.targetimg1.com/tff/bm-2-tff_20160105.1/images/spinner-small.gif", class: 'spinning-wheel' %>
+        <%= render partial: "/partials/spinning_wheel", locals: { id: "repo-wheel"} %>
         <div id="all_repos">
         </div>
         <h4 class="contributions-header">Contributions</h4>
@@ -53,24 +53,14 @@
         </div>
       </div>
       <h4 class="commits-header">Contribution Activity</h4>
-      <%= image_tag "http://img1.targetimg1.com/tff/bm-2-tff_20160105.1/images/spinner-small.gif", class: 'spinning-wheel' %>
-      <table class="table">
-        <tr>
-          <th>Repo</th>
-          <th>Message</th>
-        </tr>
-      </table>
+      <%= render partial: "/partials/spinning_wheel", locals: { id: "commits-wheel"}  %>
+      <%= render partial: "/partials/commit_table" %>
       <table class="table"id="my_commits">
       </table>
       <hr>
       <h4 class="following-header">Activity from Users You Follow</h4>
-      <%= image_tag "http://img1.targetimg1.com/tff/bm-2-tff_20160105.1/images/spinner-small.gif", class: 'spinning-wheel' %>
-      <table class="table">
-        <tr>
-          <th>Repo</th>
-          <th>Message</th>
-        </tr>
-      </table>
+      <%= render partial: "/partials/spinning_wheel", locals: { id: "following-wheel"} %>
+      <%= render partial: "/partials/commit_table" %>
       <table class="table"id="following_commits">
       </table>
     <% end %>

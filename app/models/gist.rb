@@ -25,7 +25,14 @@ class Gist < OpenStruct
                }
              }}
     GistService.new(current_user).create(hash)
+  end
 
+  def name
+    self.files.keys.first
+  end
+
+  def contents
+    self.files[name]["content"]
   end
 
   def delete(current_user)

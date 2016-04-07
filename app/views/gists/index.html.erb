@@ -8,7 +8,7 @@
       </tr>
       <% @gists.each do |the_gist| %>
         <tr>
-          <td><%= link_to the_gist.files.keys.first, user_gist_path(current_user, the_gist["id"]) %></td>
+          <td><%= link_to the_gist.name, user_gist_path(current_user, the_gist["id"]) %></td>
           <td><%= the_gist.created_date %></td>
         </tr>
       <% end %>

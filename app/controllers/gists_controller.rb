@@ -5,7 +5,6 @@ class GistsController < ApplicationController
 
   def show
     @gist = Gist.find(current_user, params[:id])
-    @name = @gist["files"].keys.first
   end
 
   def create
@@ -14,8 +13,7 @@ class GistsController < ApplicationController
   end
 
   def destroy
-    the_gist = Gist.find(current_user, params[:id])
-    the_gist.delete(current_user)
+    Gist.find(current_user, params[:id]).delete(current_user)
     redirect_to user_gists_path(current_user)
   end
 end

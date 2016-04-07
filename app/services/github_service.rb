@@ -63,14 +63,14 @@ class GithubService
     feed
   end
 
-  def main_page
-    @main_page ||= Nokogiri::HTML(open("https://github.com/#{current_user.nickname}"))
-  end
-
   private
 
     def connection
       @_connection
+    end
+
+    def main_page
+      @main_page ||= Nokogiri::HTML(open("https://github.com/#{current_user.nickname}"))
     end
 
     def push_events(all_events)
